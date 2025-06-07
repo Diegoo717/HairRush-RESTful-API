@@ -1,30 +1,17 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const { sequelize, testConnection } = require('./config/database');
+require('dotenv').config()
+const express = require('express')
+const cors = require('cors')
+require('./config/database')
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+const app = express()
 
-app.use(cors());
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
 
-testConnection();
+app.get('/', (req,res) =>{
+  res.json({Tittle: "API en funcionamientooooooo :)"})
+})
 
-app.get('/', (req, res) => {
-  res.json({ 
-    message: 'HairRush API 🚀',
-    status: 'Operativa'
-  });
-});
+const PORT = process.env.PORT || 2000;
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Error interno del servidor' });
-});
-
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
-
-module.exports = app;
+app.listen(PORT, ()=> console.log(`Servidor corriendo en http://localhost:${PORT}`))
