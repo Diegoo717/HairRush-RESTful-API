@@ -7,14 +7,9 @@ const Appointment = sequelize.define('appoinment',{
         type: DataTypes.STRING,
         allowNull: false
     },
-    phoneNumber:{
-        type: DataTypes.STRING(15),  
-        allowNull: false,
-        validate: {
-        len: [7, 15], 
-        is: /^\+?\d[\d\s()-]{6,14}\d$/,
-        notEmpty: true 
-        }
+    email:{
+        type: DataTypes.STRING,  
+        allowNull: false
     },
     date:{
         type: DataTypes.DATEONLY,
@@ -22,12 +17,13 @@ const Appointment = sequelize.define('appoinment',{
     },
     time:{
         type: DataTypes.TIME,
-        allowNull: false,
-        validate: {
-        is: /^([01]?\d|2[0-3]):[0-5]\d$/ 
-        }
+        allowNull: false
     },
     status:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    service:{
         type: DataTypes.STRING,
         allowNull: false
     }
