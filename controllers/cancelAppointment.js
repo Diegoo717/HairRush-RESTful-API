@@ -6,7 +6,10 @@ const cancelAppointment = async(req, res) =>{
 
     try{
         const {code} = req.body
-        console.log
+        
+        if(!isValidCode(code)){
+            return res.status(404).json("Invalid code")
+        }
 
         const appointment = await Appointment.findOne({
             where:{
@@ -15,7 +18,7 @@ const cancelAppointment = async(req, res) =>{
         }) 
 
         if(!appointment){
-            res.status(404).json("Invalid code")
+            return res.status(404).json("Code not found")
         }
 
         appointment.status = "canceled"
@@ -27,6 +30,11 @@ const cancelAppointment = async(req, res) =>{
         res.status(500).json("Problems to cancel appointment")
     }
 
+}
+
+function isValidCode(code) {
+  const validChars = /^[A-Za-z0-9]{9}$/;
+  return validChars.test(code);
 }
 
 module.exports = {cancelAppointment}

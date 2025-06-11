@@ -10,7 +10,13 @@ const getAppointments = async(req,res) => {
                 status: "scheduled"
             }
         })
-        res.status(200).json(appointments)
+
+        const dates = appointments.map(appointment => ({
+            date: appointment.date,
+            time: appointment.time
+        }))
+
+        res.status(200).json(dates)
 
     }catch(error){
         console.log("Error to get appointments")
