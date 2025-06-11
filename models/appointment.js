@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/database')
 
-const Appointment = sequelize.define('appoinment',{
+const Appointment = sequelize.define('appointment',{
 
     fullName:{
         type: DataTypes.STRING,
@@ -24,6 +24,10 @@ const Appointment = sequelize.define('appoinment',{
         allowNull: false
     },
     service:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    code:{
         type: DataTypes.STRING,
         allowNull: false
     }

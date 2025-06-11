@@ -7,32 +7,36 @@ const scheduleAppointment = async (req,res) =>{
 
     try{
 
-        const {fullName, email, date, time, status, service} = req.body
+        const {fullName, email, date, time, service} = req.body
 
-        if (!fullName || !email || !date || !time || !status || !service) {
+        if (!fullName || !email || !date || !time || !service) {
             return res.status(400).json({ error: "Todos los campos son obligatorios" });
         }
 
         const appointmentExist = await Appointment.findOne({ 
             where: { 
                 date: date,
-                time: time
+                time: time,
+                status: "scheduled"
             } 
         });
 
         if (appointmentExist) {
             return res.status(409).json({ 
-                error: "Appointment already exists" 
+                error: "Appointment scheduled already exists" 
             });
         }
+
+        const code = createRandomString(3) + extractCharact(email) + createRandomString(3)
 
         const newAppointment = await Appointment.create({ 
             fullName, 
             email, 
             date,
             time,
-            status,
-            service
+            status: "scheduled",
+            service, 
+            code: code
         });
 
         res.status(201).json({
@@ -40,6 +44,7 @@ const scheduleAppointment = async (req,res) =>{
             data: newAppointment
         })
 
+        /*
         const resend = new Resend(process.env.API_KEY_RESEND);
 
         (async function () {
@@ -56,6 +61,12 @@ const scheduleAppointment = async (req,res) =>{
 
         console.log({ data });
         })();
+        */
+
+        function extractCharact(email){
+            const characters = email.substring(0,3)
+            return characters
+        }
 
     }catch(error){
         console.error("Error to schedule appointment: ", error);
@@ -63,5 +74,16 @@ const scheduleAppointment = async (req,res) =>{
     }
 
 }
+
+function createRandomString(length) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+
 
 module.exports = {scheduleAppointment}
