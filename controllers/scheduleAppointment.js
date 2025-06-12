@@ -1,7 +1,7 @@
 require('dotenv').config()
 const db = require('../models/index')
+const { resend } = require('../services/resend')
 const Appointment = db.Appointment;
-const { Resend } = require('resend');
 
 const scheduleAppointment = async (req,res) =>{
 
@@ -58,6 +58,8 @@ const scheduleAppointment = async (req,res) =>{
             service, 
             code: code
         });
+
+        resend(email, fullName, date, time, service, code)
 
         res.status(201).json({
             message: "Appointment crated succesfully",
