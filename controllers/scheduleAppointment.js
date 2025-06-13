@@ -125,12 +125,33 @@ function validateDate(date) {
 
     if (inputDate < today) return false;
 
+    if (inputDate.getDay() === 0) return false;
+
     return true;
 }
 
+
 function validateTime(time) {
     const regex = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
-    return regex.test(time);
+    if (!regex.test(time)) {
+        return false;
+    }
+
+    const [hours, minutes, seconds] = time.split(':').map(Number);
+
+    if (seconds !== 0) {
+        return false;
+    }
+
+    if (minutes !== 0 && minutes !== 30) {
+        return false;
+    }
+
+    if (hours < 8 || hours > 20) {
+        return false;
+    }
+
+    return true;
 }
 
 function validateService(service) {

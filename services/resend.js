@@ -1,3 +1,4 @@
+require('dotenv').config
 const { Resend } = require("resend");
 
 function resend(email, fullName, date, time, service, code) {
@@ -5,7 +6,7 @@ function resend(email, fullName, date, time, service, code) {
 
   (async function () {
     const { data, error } = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
+      from: "HairRush <soport@"+process.env.DOMAIN+">",
       to: [email],
       subject: "✅ Confirmación de tu cita",
       html: `
@@ -19,7 +20,8 @@ function resend(email, fullName, date, time, service, code) {
         <p style="margin: 5px 0;">⏰ <strong>Hora:</strong> ${time}</p>
       </div>
       
-      <p>🔹 <strong>Tu código de confirmación:</strong> <span style="background-color: #fff8e1; padding: 3px 6px; border-radius: 4px; font-family: monospace;">${code}</span> (Guárdalo para cualquier consulta y/o cancelar tu cita).</p>
+      <p>🔹 <strong>Tu código de confirmación:</strong> <span style="background-color: #fff8e1; padding: 3px 6px; border-radius: 4px; font-family: monospace;">${code}</span></p>
+      <p>(Guárdalo para cualquier consulta y/o cancelar tu cita).</p>
       
       <div style="margin: 25px 0;">
         <h3 style="color: #2e7d32; border-bottom: 1px solid #e0e0e0; padding-bottom: 5px;">💡 Recomendaciones:</h3>
@@ -34,7 +36,7 @@ function resend(email, fullName, date, time, service, code) {
       <p style="text-align: center; margin-top: 30px;">¡Gracias por confiar en nosotros! Estamos emocionados de verte pronto. 😊</p>
       
       <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
-        <p><strong>HariRush</strong></p>
+        <p><strong>HairRush</strong></p>
         <p>🔗 <a href="" style="color: #1565c0;">Visita nuestro sitio</a> | 📱 Síguenos en</p>
       </div>
     </div>
