@@ -1,5 +1,5 @@
     const sequelize = require('../config/database');
-    const Appointment = require('./Appointment');
+    const Appointment = require('./appointment');
 
     const db = {
       sequelize,
