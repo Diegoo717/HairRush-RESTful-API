@@ -13,24 +13,29 @@ const scheduleAppointment = async (req,res) =>{
             return res.status(400).json({ error: "All fields are required" });
         }
 
-        if(!validateFullName(fullName)){
-            return res.status(400).json({ error: "Invalid name" });
+        const nameValidation = validateFullName(fullName);
+        if(nameValidation){
+            return res.status(400).json({ error: nameValidation });
         }
 
-        if(!validateEmail(email)){
-            return res.status(400).json({ error: "Invalid email" });
+        const emailValidation = validateEmail(email);
+        if(emailValidation){
+            return res.status(400).json({ error: emailValidation });
         }
 
-        if(!validateDate(date)){
-            return res.status(400).json({ error: "Invalid date" });
+        const dateValidation = validateDate(date);
+        if(dateValidation){
+            return res.status(400).json({ error: dateValidation });
         }
 
-        if(!validateTime(time)){
-            return res.status(400).json({ error: "Invalid time" });
+        const timeValidation = validateTime(time);
+        if(timeValidation){
+            return res.status(400).json({ error: timeValidation });
         }
 
-        if(!validateService(service)){
-            return res.status(400).json({ error: "Invalid service" });
+        const serviceValidation = validateService(service);
+        if(serviceValidation){
+            return res.status(400).json({ error: serviceValidation });
         }
 
         const appointmentExist = await Appointment.findOne({ 
@@ -62,7 +67,7 @@ const scheduleAppointment = async (req,res) =>{
         resend(email, fullName, date, time, service, code)
 
         res.status(201).json({
-            message: "Appointment crated succesfully",
+            message: "Appointment created successfully",
             data: newAppointment
         })
 
@@ -73,7 +78,7 @@ const scheduleAppointment = async (req,res) =>{
 
     }catch(error){
         console.error("Error to schedule appointment: ", error);
-        res.status(500).json({ error: "Error in the server" });
+        res.status(500).json({ error: "Server error" });
     }
 
 }
@@ -90,82 +95,146 @@ function createRandomString(length) {
 // Validations
 
 function validateFullName(fullName) {
+    if (!fullName) {
+        return "Full name is required";
+    }
+
+    if (typeof fullName !== "string") {
+        return "Name must be valid text";
+    }
+
+    if (fullName.trim() === "") {
+        return "Name cannot be empty";
+    }
+
+    if (fullName.replace(/\s/g, "").length < 8) {
+        return "Name must contain at least 8 characters";
+    }
+
     const regex = /^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s-]+$/;
-    
-    return (
-        fullName &&
-        typeof fullName === "string" &&
-        fullName.trim() !== "" &&
-        fullName.replace(/\s/g, "").length >= 8 &&  
-        regex.test(fullName)
-    );
+    if (!regex.test(fullName)) {
+        return "Only letters, spaces and hyphens are allowed";
+    }
+
+    return null;
 }
 
 function validateEmail(email) {
-    if (!email || typeof email !== "string") return false;
+    if (!email) {
+        return "Email is required";
+    }
+
+    if (typeof email !== "string") {
+        return "Email must be valid text";
+    }
 
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(email.trim());
+    if (!regex.test(email.trim())) {
+        return "Enter a valid email address";
+    }
+
+    return null;
 }
 
 function validateDate(date) {
+    if (!date) {
+        return "Date is required";
+    }
+
     const regex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!regex.test(date)) return false;
+    if (!regex.test(date)) {
+        return "Date must have YYYY-MM-DD format";
+    }
 
     const [year, month, day] = date.split('-').map(Number);
 
-    if (month < 1 || month > 12 || day < 1 || day > 31) return false;
+    if (month < 1 || month > 12) {
+        return "Month must be between 01 and 12";
+    }
+
+    if (day < 1 || day > 31) {
+        return "Day must be between 01 and 31";
+    }
 
     const lastDayOfMonth = new Date(year, month, 0).getDate();
-    if (day > lastDayOfMonth) return false;
+    if (day > lastDayOfMonth) {
+        return "Day is not valid for the selected month";
+    }
 
     const inputDate = new Date(date + 'T00:00:00');
     const today = new Date();
-    today.setHours(0, 0, 0, 0); 
+    today.setHours(0, 0, 0, 0);
 
-    if (inputDate < today) return false;
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
 
-    if (inputDate.getDay() === 0) return false;
+    if (inputDate < tomorrow) {
+        return "Date must be at least 1 day in advance from today";
+    }
 
-    return true;
+    if (inputDate.getDay() === 0 || inputDate.getDay() === 6) {
+        return "Appointments can only be scheduled Monday to Friday";
+    }
+
+    return null;
 }
 
-
 function validateTime(time) {
+    if (!time) {
+        return "Time is required";
+    }
+
     const regex = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
     if (!regex.test(time)) {
-        return false;
+        return "Time must have HH:MM:SS format";
     }
 
     const [hours, minutes, seconds] = time.split(':').map(Number);
 
     if (seconds !== 0) {
-        return false;
+        return "Seconds must be 00";
     }
 
     if (minutes !== 0 && minutes !== 30) {
-        return false;
+        return "Minutes must be 00 or 30";
     }
 
-    if (hours < 8 || hours > 20) {
-        return false;
+    if (hours < 8 || hours > 20 || (hours > 14 && hours < 16)) {
+        return "Service hours are 08:00 to 14:00 and 16:00 to 20:00";
     }
 
-    return true;
+    return null;
 }
 
 function validateService(service) {
-    if (!service || typeof service !== "string") return false;
-    
-    const trimmedService = service.trim();
-    const regex = /^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+$/;
+    if (!service) {
+        return "You must select a service";
+    }
 
-    return (
-        trimmedService !== "" &&            
-        trimmedService.length >= 3 &&       
-        trimmedService.length <= 25 &&      
-        regex.test(service)                 
-    );
+    if (typeof service !== "string") {
+        return "Service must be valid text";
+    }
+
+    const trimmedService = service.trim();
+
+    if (trimmedService === "") {
+        return "You must select a valid service";
+    }
+
+    if (trimmedService.length < 3) {
+        return "Service must have at least 3 characters";
+    }
+
+    if (trimmedService.length > 40) {
+        return "Service cannot have more than 40 characters";
+    }
+
+    const regex = /^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+$/;
+    if (!regex.test(service)) {
+        return "Service can only contain letters and spaces";
+    }
+
+    return null;
 }
 
 module.exports = {scheduleAppointment}
