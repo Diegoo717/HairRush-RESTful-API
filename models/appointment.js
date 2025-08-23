@@ -108,8 +108,8 @@ const Appointment = sequelize.define("appointment", {
           throw new Error("Seconds must be 00");
         }
 
-        if (minutes !== 0 && minutes !== 30) {
-          throw new Error("Minutes must be 00 or 30");
+        if (minutes !== 0) {
+          throw new Error("Minutes must be 00");
         }
 
         if (hours < 8 || hours > 20 || (hours > 14 && hours < 16)) {
