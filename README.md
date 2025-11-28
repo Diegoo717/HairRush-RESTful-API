@@ -1,195 +1,196 @@
-# HairRush RESTful API 💇‍♀️
+<div align="center">
 
-Una API REST robusta desarrollada con Node.js, Express y Sequelize sobre PostgreSQL, especializada en la gestión de citas para peluquerías con validaciones robustas, autenticación por dominio y sistema de notificaciones por email.
+# 💇‍♀️ HairRush RESTful API
 
-## 📋 Descripción
+**Robust backend for hair salon appointment management: secure, scalable, and efficient**
 
-HairRush RESTful API es el backend especializado para peluquerías, desarrollado con Node.js, Express y Sequelize sobre PostgreSQL. Ofrece endpoints RESTful optimizados para la gestión de citas, validaciones robustas de datos y envío de emails personalizados via Resend API con autenticación por dominio, diseñado para integrarse perfectamente con clientes frontend modernos.
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://postgresql.org/)
+[![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)](https://sequelize.org/)
 
-## 🚀 Características Principales
+</div>
 
-- ✅ **Gestión de Citas**: Sistema completo de agendamiento, consulta y cancelación
-- 🔐 **Autenticación por Dominio**: Control de acceso basado en dominios autorizados
-- 📧 **Notificaciones Inteligentes**: Emails personalizados para confirmaciones y recordatorios
-- 🛡️ **Validaciones Robustas**: Middleware avanzado de validación de datos
-- 📊 **Base de Datos Relacional**: PostgreSQL con Sequelize ORM para máximo rendimiento
-- 🌐 **API RESTful**: Endpoints semánticos y bien estructurados
-- ⚡ **Alto Rendimiento**: Optimizado para consultas rápidas y concurrentes
-- 🔄 **Integración Seamless**: Diseñado para frontend React.js
+---
 
-## 🛠️ Tecnologías
+## 🎯 About The Project
 
-### Backend
-- **Node.js**: Entorno de ejecución JavaScript del lado del servidor
-- **Express.js**: Framework web rápido y minimalista
-- **Sequelize**: ORM moderno para JavaScript con PostgreSQL
+**HairRush RESTful API** is a specialized backend for hair salon management. Built with Node.js, Express, and Sequelize over PostgreSQL, it provides RESTful endpoints optimized for appointment scheduling, robust data validation, and personalized email notifications via Resend API with domain-based authentication.
 
-### Base de Datos
-- **PostgreSQL**: Sistema de gestión de bases de datos objeto-relacional avanzado
+### What Makes Our API Special?
 
-### Servicios y Middleware
-- **Resend API**: Servicio profesional de envío de emails
-- **Custom Middleware**: Validaciones y autenticación personalizada
-- **CORS**: Configuración para integración con frontend React
+- 📅 **Complete Appointment System**: Schedule, query, and cancel appointments
+- 🔐 **Domain Authentication**: Access control based on authorized domains
+- 📧 **Smart Notifications**: Personalized emails for confirmations and reminders
+- 🛡️ **Robust Validations**: Advanced data validation middleware
+- ⚡ **High Performance**: Optimized for fast concurrent queries
+- 🌐 **CORS Configured**: Ready for React.js frontend integration
 
-### DevOps y Desarrollo
-- **Sequelize CLI**: Migraciones y seeders para base de datos
-- **Environment Variables**: Configuración segura con variables de entorno
+---
 
-## 📁 Estructura del Proyecto
+## ✨ Key Features
 
-```
-HAIRRUSH-RESTFUL-API/
-│
-├── config/
-│   ├── config.json                # Configuración de base de datos
-│   └── database.js                # Conexión a PostgreSQL
-│
-├── controllers/
-│   ├── cancelAppointment.js       # Cancelación de citas
-│   ├── getAppointments.js         # Consulta de citas
-│   └── scheduleAppointment.js     # Agendamiento de citas
-│
-├── middlewares/                   # Middleware de validación y auth
-│
-├── migrations/                    # Migraciones de base de datos
-│
-├── models/
-│   ├── appointment.js             # Modelo de citas
-│   └── index.js                   # Configuración de modelos
-│
-├── routes/
-│   └── appointmentRoutes.js       # Rutas de citas
-│
-├── seeders/                       # Datos iniciales
-│
-├── services/
-│   └── resend.js                  # Servicio de emails
-│
-├── utils/                         # Utilidades y helpers
-│
-├── .env                           # Variables de entorno
-├── app.js                         # Configuración principal
-└── package.json                   # Dependencias del proyecto
-```
+### 📅 Appointment Management
 
-## 🎯 Nuestra Misión
+- Complete appointment scheduling system
+- Query appointments by date and status
+- Appointment cancellation with reason tracking
+- Availability validation
 
-Revolucionar la experiencia de agendamiento en peluquerías mediante tecnología moderna, facilitando la gestión de citas tanto para clientes como para profesionales del sector.
+### 🔐 Advanced Security
 
-## 🔮 Nuestra Visión
+- Domain-based authentication
+- Input sanitization and validation
+- CORS configuration for secure cross-origin requests
+- Secure environment variable management
 
-Ser la plataforma líder en soluciones tecnológicas para salones de belleza, conectando profesionales y clientes a través de herramientas digitales intuitivas y eficientes.
+### 📧 Email Notifications
 
-## 💎 Nuestros Valores
+- Appointment confirmations via Resend API
+- Appointment reminders
+- Cancellation notifications
+- Custom email templates
 
-### Eficiencia
-Optimizamos el tiempo de nuestros usuarios mediante procesos automatizados y flujos de trabajo intuitivos.
+### 📊 Data Management
 
-### Confiabilidad
-Garantizamos un servicio estable y seguro para la gestión de citas importantes.
+- PostgreSQL relational database
+- Optimized queries with Sequelize ORM
+- Database migrations and seeders
+- Connection pooling for performance
 
-### Innovación
-Adoptamos las últimas tecnologías para ofrecer la mejor experiencia posible.
+---
 
-## 🚀 Instalación y Configuración
+## 🛠️ Tech Stack
 
-### Prerrequisitos
+### Backend Core
+
+- **[Node.js](https://nodejs.org/)** - JavaScript runtime environment
+- **[Express.js](https://expressjs.com/)** - Minimalist web framework
+- **[Sequelize](https://sequelize.org/)** - Promise-based Node.js ORM
+
+### Database
+
+- **[PostgreSQL](https://postgresql.org/)** - Advanced relational database system
+
+### Services & Middleware
+
+- **[Resend](https://resend.com/)** - Professional email delivery service
+- **Custom Middleware** - Validation and authentication
+- **CORS** - Cross-origin resource sharing
+
+### DevOps
+
+- **Sequelize CLI** - Database migrations and seeders
+- **Environment Variables** - Secure configuration management
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
 - Node.js 16+
 - PostgreSQL 12+
-- npm o yarn
+- npm or yarn
 
-### Instalación Local
+### Local Development
 
-1. **Clona el repositorio**
+1. **Clone the repository**
+
    ```bash
-   git clone https://github.com/tu-usuario/hairrush-restful-api.git
+   git clone https://github.com/your-username/hairrush-restful-api.git
    cd hairrush-restful-api
    ```
 
-2. **Instala dependencias**
+2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
-3. **Configura variables de entorno**
+3. **Configure environment variables**
+
    ```bash
    cp .env.example .env
    ```
-   
-   Edita `.env` con tus configuraciones:
+
+   Edit `.env` with your configurations:
+
    ```env
    NODE_ENV=development
    PORT=3001
-   
+
    # Database
    DB_HOST=localhost
-   DB_USER=tu_usuario
-   DB_PASS=tu_contraseña
+   DB_USER=your_username
+   DB_PASS=your_password
    DB_NAME=hairrush_db
    DB_PORT=5432
-   
+
    # Resend Email API
-   RESEND_API_KEY=tu_resend_api_key
-   
+   RESEND_API_KEY=your_resend_api_key
+
    # Domain Authentication
-   ALLOWED_DOMAINS=localhost,tu-dominio.com
+   ALLOWED_DOMAINS=localhost,your-domain.com
    ```
 
-4. **Configura la base de datos**
+4. **Set up the database**
+
    ```bash
-   # Crear la base de datos
+   # Create database
    createdb hairrush_db
-   
-   # Ejecutar migraciones
+
+   # Run migrations
    npx sequelize-cli db:migrate
-   
-   # Ejecutar seeders (opcional)
+
+   # Run seeders (optional)
    npx sequelize-cli db:seed:all
    ```
 
-5. **Inicia el servidor**
+5. **Start the server**
+
    ```bash
-   # Desarrollo
-   node app.js
-   
-   # Producción
-   node app.js
+   npm start
    ```
 
-## 🔌 Endpoints de la API
+---
 
-### Gestión de Citas
+## 🔌 API Endpoints
+
+### Appointment Management
+
 ```http
-POST /api/scheduleAppointment    # Agendar nueva cita
-GET  /api/getAppointments        # Consultar citas existentes
-PUT  /api/cancelAppointment      # Cancelar cita programada
+POST /api/scheduleAppointment    # Schedule new appointment
+GET  /api/getAppointments        # Query existing appointments
+PUT  /api/cancelAppointment      # Cancel scheduled appointment
 ```
 
-### Estructura de Datos
+### Request Examples
 
-#### Agendar Cita
+#### Schedule Appointment
+
 ```json
 POST /api/scheduleAppointment
 {
   "clientName": "Juan Pérez",
-  "clientEmail": "juan@ejemplo.com",
+  "clientEmail": "juan@example.com",
   "clientPhone": "+52 999 123 4567",
-  "service": "Corte y Peinado",
+  "service": "Haircut and Styling",
   "date": "2024-08-15",
   "time": "14:30",
-  "notes": "Cliente frecuente"
+  "notes": "Frequent client"
 }
 ```
 
-#### Consultar Citas
+#### Query Appointments
+
 ```json
 GET /api/getAppointments?date=2024-08-15
 [
   {
     "id": 1,
     "clientName": "Juan Pérez",
-    "service": "Corte y Peinado",
+    "service": "Haircut and Styling",
     "date": "2024-08-15",
     "time": "14:30",
     "status": "confirmed"
@@ -197,62 +198,22 @@ GET /api/getAppointments?date=2024-08-15
 ]
 ```
 
-#### Cancelar Cita
+#### Cancel Appointment
+
 ```json
 PUT /api/cancelAppointment
 {
   "appointmentId": 1,
-  "reason": "Cambio de horario"
+  "reason": "Schedule change"
 }
 ```
 
-## 🔒 Seguridad y Validaciones
+---
 
-### Autenticación por Dominio
-- Validación de dominios permitidos para acceso a la API
-- Control de CORS configurado para dominios específicos
-- Headers de seguridad implementados
+## 📊 Database Schema
 
-### Validaciones de Datos
-- Validación de formatos de email y teléfono
-- Verificación de fechas y horarios disponibles
-- Sanitización de datos de entrada
-- Validación de servicios existentes
+### Appointments Table
 
-## 📧 Sistema de Notificaciones
-
-### Resend API Integration
-```javascript
-// Confirmación de cita
-const confirmationEmail = {
-  to: clientEmail,
-  subject: '✅ Cita confirmada - HairRush',
-  template: 'appointment-confirmation',
-  data: {
-    clientName,
-    service,
-    date,
-    time,
-    salonInfo
-  }
-}
-
-// Recordatorio de cita
-const reminderEmail = {
-  to: clientEmail,
-  subject: '⏰ Recordatorio de cita - HairRush',
-  template: 'appointment-reminder',
-  data: {
-    clientName,
-    service,
-    appointmentTime
-  }
-}
-```
-
-## 📊 Modelo de Base de Datos
-
-### Tabla Appointments
 ```sql
 CREATE TABLE appointments (
   id SERIAL PRIMARY KEY,
@@ -269,73 +230,80 @@ CREATE TABLE appointments (
 );
 ```
 
-### Estados de Cita
-- `confirmed`: Cita confirmada
-- `cancelled`: Cita cancelada
-- `completed`: Servicio completado
-- `no_show`: Cliente no se presentó
+### Appointment Status
 
-## 🌐 Integración con Frontend
-
-### HairRush WebApp (React.js)
-La API está diseñada para integrarse perfectamente con:
-- **Framework**: React.js con Context API/Redux
-- **HTTP Client**: Axios/Fetch API
-- **Routing**: React Router
-- **Build Tool**: Vite/Create React App
-
-### Configuración de CORS
-```javascript
-const corsOptions = {
-  origin: [
-    'http://localhost:3000',      // React dev server
-    'http://localhost:5173',      // Vite dev server
-    // Dominios de producción cuando se desplieguen
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-```
-
-## ⚡ Rendimiento y Optimización
-
-### Optimizaciones Implementadas
-- **Connection Pooling**: Pool de conexiones PostgreSQL optimizado
-- **Query Optimization**: Consultas SQL optimizadas con índices
-- **Async Operations**: Operaciones asíncronas con async/await
-- **Error Handling**: Manejo robusto de errores y logging
-
-### Escalabilidad
-- Arquitectura preparada para múltiples salones
-- Soporte para alta concurrencia de citas
-- Optimización para picos de tráfico
-
-## 👨‍💻 Desarrollador
-
-**Ing. Diego Magaña Álvarez**
-- **Rol**: Arquitecto y Desarrollador Full-Stack
-- **Experiencia**: 3+ años en el ciclo completo de desarrollo de aplicaciones web/móviles y sistemas escalables
-- **Enfoque en el proyecto**: 
-  - Desarrollo de APIs especializadas para sectores específicos
-  - Integración de sistemas de notificaciones avanzados
-  - Arquitectura de bases de datos PostgreSQL optimizada
-  - Validaciones robustas y seguridad por dominio
-  - Integración seamless con frontends React.js
-- **Contacto**: [soydiegoo71@gmail.com](mailto:soydiegoo71@gmail.com)
-
-## 🌐 Aplicación Frontend
-
-- **HairRush WebApp**: Interfaz React.js para gestión de citas (en desarrollo)
-
-## 🆘 Soporte
-
-¿Necesitas ayuda? Puedes:
-- Crear un [issue](https://github.com/tu-usuario/hairrush-restful-api/issues) en GitHub
-- Contactar al desarrollador: [soydiegoo71@gmail.com](mailto:soydiegoo71@gmail.com)
+- `confirmed` - Appointment confirmed
+- `cancelled` - Appointment cancelled
+- `completed` - Service completed
+- `no_show` - Client did not show up
 
 ---
 
-⭐ Si te gusta este proyecto, ¡no olvides darle una estrella!
+## 🌐 Frontend Integration
 
-**HairRush** - Transformando la experiencia de agendamiento en peluquerías 💇‍♀️
+The API is configured to work seamlessly with React.js applications:
+
+### CORS Configuration
+
+```javascript
+const corsOptions = {
+  origin: [
+    "http://localhost:3000", // React dev server
+    "http://localhost:5173", // Vite dev server
+    // Add production domains when deployed
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+```
+
+---
+
+## ⚡ Performance Features
+
+- **Connection Pooling**: Optimized PostgreSQL connection pool
+- **Query Optimization**: Indexed SQL queries for fast lookups
+- **Async Operations**: Non-blocking async/await patterns
+- **Error Handling**: Robust error management and logging
+- **Scalability**: Architecture ready for multiple salon locations
+
+---
+
+## 📄 License
+
+© 2025 HairRush. All rights reserved.
+
+This project is a personal portfolio project and is not licensed for public use, modification, or distribution.
+
+---
+
+## 📞 Contact
+
+**Diego Magaña Álvarez**  
+_Full-Stack Developer_
+
+soydiegoo71@gmail.com | +52 445 105 9192
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/diego-magana-dev)
+
+---
+
+## 🙏 Acknowledgments
+
+- [Express.js Documentation](https://expressjs.com/)
+- [Sequelize ORM Documentation](https://sequelize.org/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Resend Documentation](https://resend.com/docs)
+
+---
+
+<div align="center">
+
+⭐ If you like this project, don't forget to give it a star!
+
+**HairRush** - Transforming the hair salon appointment experience 💇‍♀️
+
+**Made with ❤️ and ☕**
+
+</div>
